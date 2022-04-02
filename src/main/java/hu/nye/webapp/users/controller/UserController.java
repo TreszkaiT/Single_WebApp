@@ -2,7 +2,7 @@ package hu.nye.webapp.users.controller;
 
 import hu.nye.webapp.users.dto.UserDTO;
 import hu.nye.webapp.users.service.UserService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
