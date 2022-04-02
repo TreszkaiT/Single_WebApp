@@ -20,7 +20,6 @@ public class User {
     private Long id;
     private String firstName;
     private String secondName;
-    //private String password;
     private String telNumber;
     private String address;
     private Date registrationDate;  // szülidő , emailcím
@@ -55,13 +54,6 @@ public class User {
         this.secondName = secondName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getTelNumber() {
         return telNumber;
