@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Ebben vannak az EndPoint-ok
@@ -45,6 +46,10 @@ public class UserController {
     @RequestMapping(path = "/users/del" , method = RequestMethod.POST)
     public List<UserDTO> delete(@RequestBody Long id) { return userService.findAll(); }
 
+
     // ID alaján kiolvas
+    @RequestMapping(path = "/users/findById" , method = RequestMethod.POST)
+    public Optional<UserDTO> findById(@RequestBody Long id){ return userService.findById(id);}
+
 
 }

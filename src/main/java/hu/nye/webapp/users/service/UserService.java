@@ -3,6 +3,7 @@ package hu.nye.webapp.users.service;
 import hu.nye.webapp.users.dto.UserDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * service réteg: itt van az üzeleti logika
@@ -16,4 +17,13 @@ public interface UserService {
 
     // user mentése. Mentés után visszakapjuk a UserDTO-t
     UserDTO create(UserDTO userDTO);
+
+    // user törlése
+    void delete(Long id);
+
+    // user keresése ID alapján
+    Optional<UserDTO> findById(Long id);
+
+
+    Optional<UserDTO> fingById(Long id);
 }
