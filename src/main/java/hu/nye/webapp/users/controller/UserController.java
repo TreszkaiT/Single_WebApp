@@ -41,4 +41,10 @@ public class UserController {
         return userService.create(userDTO);                           // itt meg meghívom az Implementáció create metódusát
     }
 
+    // adatokat töröl az adatbázisból
+    @RequestMapping(path = "/users/del" , method = RequestMethod.POST)
+    public List<UserDTO> delete(@RequestBody Long id) { return userService.findAll(); }
+
+    // ID alaján kiolvas
+
 }
