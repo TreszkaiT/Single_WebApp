@@ -63,6 +63,13 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(savedUser, UserDTO.class);               // és a kapott objektumot visszaalakítom UserDTO-vá
     }
 
+    // user keresése ID alapján
+
+    @Override
+    public Optional<UserDTO> findById(Long id){
+        return userRepository.findById(id)
+                .map(m -> modelMapper.map(m, UserDTO.class));
+    }
 
     // user törlése
     @Override
@@ -73,20 +80,6 @@ public class UserServiceImpl implements UserService {
         }else {
             throw new UserNotFoundException("User not found with this id: " + id );
         }
-    }
-
-
-    // user keresése ID alapján
-
-    @Override
-    public Optional<UserDTO> fingById(Long id){
-        return userRepository.findById(id)
-                .map(m -> modelMapper.map(m, UserDTO.class));
-    }
-
-    @Override
-    public Optional<UserDTO> findById(Long id) {
-        return Optional.empty();
     }
 
 }

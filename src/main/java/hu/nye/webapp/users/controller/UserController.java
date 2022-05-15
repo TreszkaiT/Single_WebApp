@@ -44,7 +44,9 @@ public class UserController {
 
     // adatokat töröl az adatbázisból
     @RequestMapping(path = "/users/del" , method = RequestMethod.POST)
-    public List<UserDTO> delete(@RequestBody Long id) { return userService.findAll(); }
+    public List<UserDTO> delete(@RequestBody Long id) {
+        userService.delete(id);
+        return userService.findAll(); }
 
 
     // ID alaján kiolvas
