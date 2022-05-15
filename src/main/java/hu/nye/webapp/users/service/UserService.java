@@ -24,6 +24,4 @@ public interface UserService {
     // user keresése ID alapján
     Optional<UserDTO> findById(Long id);
 
-
-    Optional<UserDTO> fingById(Long id);
 }
