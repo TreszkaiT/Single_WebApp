@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+html, body, html * {
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #1e1e2f;
+
+    a,h3,h1,label{
+      color:var(--color-primary) !important;
+    }
+
+    .rdt_TableHeadRow{
+background-color: var(--color-card-bg);
+    }
+
+    .sc-egiyK,.rdt_TableCell,.rdt_Pagination,.rdt_TableCol{
+      color:var(--color-primary);
+      background-color: var(--color-card-bg);
+    }
+
+    .sc-ezbkAF{
+      svg{
+        color:var(--color-primary);
+      }
+    }
+
+}
+
+.perfect-scrollbar-on .main-panel {
+    height: 100%;
+    max-height: 100%;
+}
+.main-panel[data=blue] {
+    border-top: 2px solid #1d8cf8;
+}
+.ps {
+    overflow: hidden!important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
+@media screen and (min-width: 991px){
+  .main-panel, .sidebar, .sidebar-wrapper { 
+    transition-property: top,bottom,width;
+    transition-duration: .2s,.2s,.35s;
+    transition-timing-function: linear,linear,ease;
+}
+}

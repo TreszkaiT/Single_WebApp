@@ -1,11 +1,10 @@
 import { createContext, useReducer, useEffect } from "react";
-import { isHamburgeReducer } from "../reducers/hamReducer";
+import { isHamburgeReducer } from "../../reducers/hamReducer";
 
 export const IsHamburgerContext = createContext()
 
 export default function HambContextProvider(props) {
     
-
     const [isHamburgerIcon, dispatch] = useReducer(isHamburgeReducer, [], () => {
         if (typeof window !== 'undefined') {    
         const initialState = localStorage.getItem("isHamburgerIcon")

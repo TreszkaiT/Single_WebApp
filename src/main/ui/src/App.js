@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/styles/main.scss';
+
+import HambContextProvider from './components/context/hamburgerContext';
+import Sidebar from './components/sidebar';
+
+import MainPanel from './components/mainPanel';
+import Header from './components/partials/header';
+
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> hello.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <BrowserRouter>
+      <Switch>
+        <Route path="/">     
+            <div className='wrapper'>
+              <HambContextProvider>
+                <Sidebar />
+                <MainPanel>
+                  <Header />
+                  {/* COMPONENT */}
+                </MainPanel>
+              </HambContextProvider>
+            </div>
+        </Route>
+
+      </Switch>
+    </BrowserRouter>
   );
 }
 
