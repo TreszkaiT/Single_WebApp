@@ -32,9 +32,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    
-    // usereket olvas DB-ból: ez pedig már a UserDTO-t fog visszaadni, és a userService-t fog használni
+    //Cors policy
     @CrossOrigin(origins = "http://localhost:3000")
+
+
+    // usereket olvas DB-ból: ez pedig már a UserDTO-t fog visszaadni, és a userService-t fog használni
     @RequestMapping(path = "/users", method = RequestMethod.GET)      // RequestMapping: megmondjuk, hogy ez a metódus a GET/users  hívásra alkalmas;;;; azaz ez egy kérés Mappalése, ha bejön egy kérés, akkor azt le tudjuk mappelni erre a metódusra  CTRL+P metódusainak kilistázása
     public List<UserDTO> findAll(){
         return userService.findAll();
