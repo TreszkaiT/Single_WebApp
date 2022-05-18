@@ -40,8 +40,8 @@ export default () => {
 
 
     const [users, setUsers] = useState([]);
-    //  const users2 = useFetch("http://localhost:8080/users");
-    //   console.log("users2: ",users2)
+      const users2 = useFetch("http://localhost:8080/users");
+      console.log("users2: ",users2)
     // const [users] = useFetch("/users");
 
     const { doRequest, errors } = useRequest({
