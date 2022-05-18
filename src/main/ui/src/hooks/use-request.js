@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import ErrorMessage from '../components/error/template';
+import ErrorMessage from '../components/errorTemplate/template';
 export default ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 

@@ -13,8 +13,8 @@ export default ({ currentUser }) => {
 
     const links = [
        
-        {label: 'Beosztás készítő', href: '/time/create',icon:<MdAlarmAdd  />},
-        { label: 'Beosztás', href: '/time/timetable',icon:<IoCalendarOutline  /> },
+        {label: 'Vizsgázó felvétele', href: '/users',icon:<MdAlarmAdd  />},
+        { label: 'Vizsgázók', href: '/user',icon:<IoCalendarOutline  /> },
     ]
         .filter(linkConfig => linkConfig)
         .map(({ label, href, icon}) => {
@@ -33,9 +33,8 @@ export default ({ currentUser }) => {
 
         <div className={`sidebar ${isHamburgerIcon ? isHamburgerIcon["actual"] ? isHamburgerIcon["actual"] : isHamburgerIcon : "closed"}`}>
             <div className='sidebar-wrapper'>
-                <div className='logo'>
-                    <Link to={'/'}>
-                        <a className='simple-text logo-mini'>
+                <div className='logo'>           
+                        <Link to={'/'} className='simple-text logo-mini'>
                             <div className='logo-img'>
                                 <img
                                     src={Logo}
@@ -43,12 +42,8 @@ export default ({ currentUser }) => {
                                     className='logo-img-class'
                                 />
                             </div>
-                        </a>
-                    </Link>
-                    <Link to={"/"}>
-                        <a className='simple-text logo-normal'>TIMEMANAGER</a>
-                    </Link>
-
+                    </Link>             
+                        <Link to={"/"} className='simple-text logo-normal'>NYILVÁNTARTÓ APP</Link>
                 </div>
                 <ul className="nav">{links}</ul>
             </div>

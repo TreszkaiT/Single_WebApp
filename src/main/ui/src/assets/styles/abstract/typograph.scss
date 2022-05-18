@@ -11,6 +11,10 @@ body{
       color:var(--color-primary) !important;
     }
 
+    a{
+      text-decoration: none;
+    }
+
     .rdt_TableHeadRow{
 background-color: var(--color-card-bg);
     }

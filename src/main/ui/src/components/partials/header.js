@@ -35,10 +35,8 @@ const [classCss,setClass] = useState('');
             <span className="navbar-toggler-bar bar2"></span>
             <span className="navbar-toggler-bar bar3"></span>
           </button>
-        </div>
-        <Link href="/">
-          <a className="navbar-brand">Kezdőoldal</a>
-        </Link>
+        </div>   
+          <Link to="/" className="navbar-brand">Kezdőoldal</Link>
       </div>
       {/* <div className="d-flex justify-content-end">
         <ul className="nav d-flex align-items-center"> 
