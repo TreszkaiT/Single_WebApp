@@ -6,67 +6,28 @@
   background: var(--color-card-bg);
   border-radius: 15px;
   box-shadow: 0 0 40px rgba(30, 31, 45, 0.15);
-
+margin-top: 50px;
 
   .profile-tabs {
     justify-content: flex-end;
   }
 
-  &.timetable {
-
-
-    .timeTable-wrapper {
-      display: flex;
-      flex-direction: column;
-
-      @media screen and (max-width: 1024px) {
-        flex-direction: column;
-      }
-
-      .charts-wrapper {
-       
-        padding:40px;
-        min-width: 100%;
-
-        svg{
-          width:100%;
-        }
-
-        h3{
-          text-align: center;
-        }
-      }
-    }
-
+  
+  &.modify{
     max-width: 40.0rem;
-
-
-    .calendar-wrapper {
-      display: flex;
-      margin-bottom: 30px;
-
-      @media only screen and (max-width: 400px) {
-      flex-direction: column;
-      }
-    }
-
-    .delete-button {
-      border: none;
-      box-shadow: none;
-      background: transparent;
-
-      svg {
-        height: 18px;
-        width: 18px;
-      }
-    }
   }
 
   .form-group {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 
+
+    .form-control{
+      max-width: 200px;
+    }
     label {
-      font-weight: 100;
+      font-weight: 300;
     }
   }
 
