@@ -1,8 +1,7 @@
 
-import { useState,useEffect } from 'react';
+import { useState} from 'react';
 import { IsHamburgerContext } from "../context/hamburgerContext"
 import { useContext } from 'react'
-import { HashLink as Link } from 'react-router-hash-link';
 export default () => {
 
   const { isHamburgerIcon } = useContext(IsHamburgerContext)
@@ -36,24 +35,7 @@ const [classCss,setClass] = useState('');
             <span className="navbar-toggler-bar bar3"></span>
           </button>
         </div>   
-          <Link to="/" className="navbar-brand">Kezdőoldal</Link>
       </div>
-      {/* <div className="d-flex justify-content-end">
-        <ul className="nav d-flex align-items-center"> 
-        {darkTheme !== undefined && (
-              <form action="#">
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    checked={darkTheme}
-                    onChange={handleToggle}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </form>
-            )}
-        </ul>
-      </div> */}
     </nav>
   );
 };

@@ -13,8 +13,9 @@ export default ({ currentUser }) => {
 
     const links = [
        
-        {label: 'Vizsgázó felvétele', href: '/users',icon:<MdAlarmAdd  />},
-        { label: 'Vizsgázók', href: '/user',icon:<IoCalendarOutline  /> },
+        { label: 'Új vizsgázó', href: '/new-user',icon:<IoCalendarOutline  /> },
+        { label: 'Vizsgázók', href: '/',icon:<IoCalendarOutline  /> },
+        {label: 'Vizsgázók módosítása', href: '/modify-user',icon:<MdAlarmAdd  />},
     ]
         .filter(linkConfig => linkConfig)
         .map(({ label, href, icon}) => {
