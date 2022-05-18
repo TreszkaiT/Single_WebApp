@@ -72,7 +72,7 @@ export default () => {
                 firstName: 'Vezeték név',
                 secondName: "keresztnév",
                 telNumber: "21321321321",
-                address: "asdsadsad"
+                address: "Nyíregyháza"
             },
             {
                 firstName: 'Vezeték név',
