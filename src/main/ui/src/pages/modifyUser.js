@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useMemo } from "react";
 import Table from '../components/table/index';
 // import CustomSelect from "../../components/customSelect";
 // import { getQueryDate, activitySelector } from "../../helpers/functions";
@@ -14,7 +14,7 @@ import { timeTableColumnsGenerator } from "../components/entity/columnsTimeTable
 // import ErrorMessage from '../../components/error/template';
 // import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
-import useFetch from "../hooks/use-fetch";
+import useFetchCustom from "../hooks/use-fetch";
 // import NoData from "../../components/svg/no-data"
 import _ from 'lodash';
 
@@ -26,39 +26,26 @@ const override = css`
   border-color: red;
 `;
 
-export default () => {
+const ModifyUsers = () => {
 
-    const [list, setList] = useState(null)
+
     const [table, setTable] = useState(null)
-
+const [id2,SetId] = useState(1);
     const [rowId, setRowId] = useState("")
-    const [isLoading, setLoading] = useState(false)
 
     const [data, setData] = useState(null)
     const [errorMessageTemplate, setErrorMessageTemplate] = useState(null)
-    // const [users, setUsers] = useState(useFetch("http://localhost:8080/users"))
 
-
-    const [users, setUsers] = useState([]);
-    //  const users2 = useFetch("http://localhost:8080/users");
-    //   console.log("users2: ",users2)
-    // const [users] = useFetch("/users");
+const members = useFetchCustom('http://localhost:8080/users');
 
     const { doRequest, errors } = useRequest({
-        url: '/api/time/delete',
+        url: 'http://localhost:8080/users/del',
         method: 'post',
-        body: {
-            user_id: rowId
-        },
+        body: 2,
         // onSuccess: () => Router.push('/')
     });
 
     const handChangeRowID = (row, e) => {
-        e.preventDefault();
-        setRowId(row.timeId)
-    }
-
-    const handleEditRowID = (row, e) => {
         e.preventDefault();
         setRowId(row.timeId)
     }
@@ -72,42 +59,40 @@ export default () => {
     }
 
     useEffect(() => {
-        const users = [
-            {
-                firstName: 'Vezeték név',
-                secondName: "keresztnév",
-                telNumber: "21321321321",
-                address: "asdsadsad"
-            },
-            {
-                firstName: 'Vezeték név',
-                secondName: "keresztnév",
-                telNumber: "21321321321",
-                address: "asdsadsad"
-            },
-            {
-                firstName: 'Vezeték név',
-                secondName: "keresztnév",
-                telNumber: "21321321321",
-                address: "asdsadsad"
-            },
-            {
-                firstName: 'Vezeték név',
-                secondName: "keresztnév",
-                telNumber: "21321321321",
-                address: "asdsadsad"
-            },
+        setData(members.response)
+        // console.log('users: ' + members);
+        // const users = [
+        //     {
+        //         firstName: 'Vezeték név',
+        //         secondName: "keresztnév",
+        //         telNumber: "21321321321",
+        //         address: "asdsadsad"
+        //     },
+        //     {
+        //         firstName: 'Vezeték név',
+        //         secondName: "keresztnév",
+        //         telNumber: "21321321321",
+        //         address: "asdsadsad"
+        //     },
+        //     {
+        //         firstName: 'Vezeték név',
+        //         secondName: "keresztnév",
+        //         telNumber: "21321321321",
+        //         address: "asdsadsad"
+        //     },
+        //     {
+        //         firstName: 'Vezeték név',
+        //         secondName: "keresztnév",
+        //         telNumber: "21321321321",
+        //         address: "asdsadsad"
+        //     },
 
-        ]
+        // ]
+   
+     
+    }, [members])
 
-        console.log("users: ", users)
-        if (!_.isNull(users)) {
-            setTable(<Table data={users} columns={timeTableColumnsGenerator(handChangeRowID,handleEditRowID)} />)
-        }
-        else {
-            setTable(null)
-        }
-    }, [])
+
 
 
     useEffect(() => {
@@ -116,6 +101,12 @@ export default () => {
         }
     }, [rowId])
 
+    useEffect(() => {
+        if (!_.isNull(data)) {
+            console.log("members: ",data)
+             setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
+        }
+    }, [data])
     return (
         <div className="page">
             <>
@@ -127,3 +118,4 @@ export default () => {
             </>
         </div>)
 }
+export default ModifyUsers;

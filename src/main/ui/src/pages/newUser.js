@@ -14,12 +14,10 @@ export default () => {
         url: 'http://localhost:8080/users',
         method: 'post',
         body: {
-            id: 0,
             firstName,
             secondName,
             telNumber,
-            address,
-            registrationDate: "2022-05-18T07:28:14.788Z"
+            address
         },
         // onSuccess: () => Router.push('/')
     });
