@@ -3,11 +3,7 @@ package hu.nye.webapp.users.controller;
 import hu.nye.webapp.users.dto.UserDTO;
 import hu.nye.webapp.users.service.UserService;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,8 +48,10 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     // adatokat töröl az adatbázisból
-    @RequestMapping(path = "/users/del" , method = RequestMethod.POST)
-    public List<UserDTO> delete(@RequestBody Long id) {
+    //@RequestMapping(path = "/users/del" , method = RequestMethod.POST)
+    //public List<UserDTO> delete(@RequestBody Long id) {
+    @RequestMapping(path = "/users/{id}" , method = RequestMethod.DELETE)
+    public List<UserDTO> delete(@PathVariable Long id) {
         userService.delete(id);
         return userService.findAll(); }
 
