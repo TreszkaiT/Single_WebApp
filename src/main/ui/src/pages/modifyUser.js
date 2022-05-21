@@ -72,7 +72,7 @@ const ModifyUsers = () => {
 
     useEffect(() => {
         setData(members.response)
-        // console.log('users: ' + members);
+        // FAKE DATA
         // const users = [
         //     {
         //         firstName: 'Vezeték név',
@@ -115,7 +115,6 @@ const ModifyUsers = () => {
 
     useEffect(() => {
         if (!_.isNull(data)) {
-            console.log("members: ", data)
             setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
         }
     }, [data])

@@ -1,4 +1,4 @@
-import { useState, useEffect,useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Table from '../components/table/index';
 // import CustomSelect from "../../components/customSelect";
 // import { getQueryDate, activitySelector } from "../../helpers/functions";
@@ -36,7 +36,7 @@ const Users = () => {
     const [data, setData] = useState(null)
     const [errorMessageTemplate, setErrorMessageTemplate] = useState(null)
 
-const members = useFetchCustom('http://localhost:8080/users');
+    const members = useFetchCustom('http://localhost:8080/users');
 
     const { doRequest, errors } = useRequest({
         url: '/api/time/delete',
@@ -90,8 +90,8 @@ const members = useFetchCustom('http://localhost:8080/users');
         //     },
 
         // ]
-   
-     
+
+
     }, [members])
 
 
@@ -103,19 +103,19 @@ const members = useFetchCustom('http://localhost:8080/users');
         }
     }, [rowId])
 
-    useEffect(() => {
-        if (!_.isNull(data)) {
-            console.log("members: ",data)
-             setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (!_.isNull(data)) {
+    //         console.log("members: ", data)
+    //         setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
+    //     }
+    // }, [data])
 
     return (
         <div className="page">
             <>
                 <div className='authWrapper timetable'>
                     <div className='timeTable-wrapper'>
-                 {table && table}
+                        {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
                     </div>
                 </div>
             </>
