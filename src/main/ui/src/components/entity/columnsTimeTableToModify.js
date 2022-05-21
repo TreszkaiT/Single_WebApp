@@ -1,4 +1,4 @@
-export function timeTableColumnsGenerator(handleDelete,handleEdit) {
+export function timeTableColumnsGenerator(handleDelete) {
     const columns = [
       {
         name: 'Vezeték név',
@@ -16,11 +16,6 @@ export function timeTableColumnsGenerator(handleDelete,handleEdit) {
       {
         name: 'Cím',
         selector: row => row.address,
-      },
-      {
-        name: ' ',
-        ignoreRowClick: true,
-        cell: row => <button className="edit-button" onClick={e => handleEdit(row, e)}>Edit</button>
       },
       {
         name: ' ',

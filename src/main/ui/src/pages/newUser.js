@@ -19,7 +19,7 @@ export default () => {
             telNumber,
             address
         },
-        // onSuccess: () => Router.push('/')
+     onSuccess: () => {window.location.reload();alert("Sikeres Regisztráció!");}
     });
 
     const onSubmit = async event => {

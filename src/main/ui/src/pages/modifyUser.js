@@ -1,4 +1,4 @@
-import { useState, useEffect,useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Table from '../components/table/index';
 // import CustomSelect from "../../components/customSelect";
 // import { getQueryDate, activitySelector } from "../../helpers/functions";
@@ -17,7 +17,7 @@ import { css } from "@emotion/react";
 import useFetchCustom from "../hooks/use-fetch";
 // import NoData from "../../components/svg/no-data"
 import _ from 'lodash';
-
+import { useHistory } from "react-router-dom";
 
 
 const override = css`
@@ -30,27 +30,39 @@ const ModifyUsers = () => {
 
 
     const [table, setTable] = useState(null)
-const [id2,SetId] = useState(1);
+    const [id2, SetId] = useState(1);
     const [rowId, setRowId] = useState("")
 
     const [data, setData] = useState(null)
     const [errorMessageTemplate, setErrorMessageTemplate] = useState(null)
 
-const members = useFetchCustom('http://localhost:8080/users');
+    const members = useFetchCustom('http://localhost:8080/users');
 
+
+    let history = useHistory();
+    
     const { doRequest, errors } = useRequest({
-        url: 'http://localhost:8080/users/del',
-        method: 'post',
-        body: 2,
-        // onSuccess: () => Router.push('/')
+        url: `http://localhost:8080/users/${rowId}`,
+        method: 'delete',
+        // body:
+        // {
+        //     id2
+        // },
+         onSuccess: () => window.location.reload()
     });
 
     const handChangeRowID = (row, e) => {
         e.preventDefault();
-        setRowId(row.timeId)
+
+        console.log(row)
+        console.log(e)
+        setRowId(row.id)
     }
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {
+
+        console.log("id: ",id2)
+        console.log("RowId: ",rowId)
         try {
             doRequest()
         } catch (error) {
@@ -88,8 +100,8 @@ const members = useFetchCustom('http://localhost:8080/users');
         //     },
 
         // ]
-   
-     
+
+
     }, [members])
 
 
@@ -103,8 +115,8 @@ const members = useFetchCustom('http://localhost:8080/users');
 
     useEffect(() => {
         if (!_.isNull(data)) {
-            console.log("members: ",data)
-             setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
+            console.log("members: ", data)
+            setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
         }
     }, [data])
     return (
