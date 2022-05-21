@@ -18,7 +18,7 @@ import useFetchCustom from "../hooks/use-fetch";
 // import NoData from "../../components/svg/no-data"
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
-
+import ErrorMessage from "../components/errorTemplate/template";
 
 const override = css`
   display: block;
@@ -113,20 +113,24 @@ const ModifyUsers = () => {
         }
     }, [rowId])
 
-    useEffect(() => {
-        if (!_.isNull(data)) {
-            setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (!_.isNull(data)) {
+    //         setTable(<Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />)
+    //     }
+    // }, [data])
+
     return (
-        <div className="page">
-            <>
-                <div className='authWrapper modify'>
-                    <div className='timeTable-wrapper'>
-                        {table}
-                    </div>
-                </div>
-            </>
-        </div>)
+     <div className="page">
+             {members.error ? (<ErrorMessage message={members.error}/>) :
+                 (
+                     <>
+                         <div className='authWrapper modify'>
+                             <div className='timeTable-wrapper'>
+                                 {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
+                             </div>
+                         </div>
+                     </>)}
+         </div>
+        )
 }
 export default ModifyUsers;

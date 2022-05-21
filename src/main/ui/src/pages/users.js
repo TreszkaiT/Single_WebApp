@@ -17,7 +17,7 @@ import { css } from "@emotion/react";
 import useFetchCustom from "../hooks/use-fetch";
 // import NoData from "../../components/svg/no-data"
 import _ from 'lodash';
-
+import ErrorMessage from "../components/errorTemplate/template";
 
 
 const override = css`
@@ -110,19 +110,23 @@ const Users = () => {
     //     }
     // }, [data])
 
-//   if (members && members.errors)
-//        return (<div> <h1>ERROR</h1> </div>)
+    //   if (members && members.errors)
+    //        return (<div> <h1>ERROR</h1> </div>)
+
+    console.log("members: ", members)
     return (
         <div className="page">
-            {members.errors?members.errors:(
-            <>
-                <div className='authWrapper timetable'>
-                    <div className='timeTable-wrapper'>
-                        {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
-                    </div>
-                </div>
-            </>)}
-        </div>)
+            {members.error ? (<ErrorMessage message={members.error}/>) :
+                (
+                    <>
+                        <div className='authWrapper timetable'>
+                            <div className='timeTable-wrapper'>
+                                {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
+                            </div>
+                        </div>
+                    </>)}
+        </div>
+    )
 }
 
 export default Users;
