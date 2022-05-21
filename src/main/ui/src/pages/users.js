@@ -37,7 +37,7 @@ const Users = () => {
     const [errorMessageTemplate, setErrorMessageTemplate] = useState(null)
 
 const members = useFetchCustom('http://localhost:8080/users');
-
+    console.log(members);
     const { doRequest, errors } = useRequest({
         url: '/api/time/delete',
         method: 'post',
@@ -110,15 +110,18 @@ const members = useFetchCustom('http://localhost:8080/users');
         }
     }, [data])
 
+//   if (members && members.errors)
+//        return (<div> <h1>ERROR</h1> </div>)
     return (
         <div className="page">
+            {members.errors?members.errors:(
             <>
                 <div className='authWrapper timetable'>
                     <div className='timeTable-wrapper'>
                  {table && table}
                     </div>
                 </div>
-            </>
+            </>)}
         </div>)
 }
 
