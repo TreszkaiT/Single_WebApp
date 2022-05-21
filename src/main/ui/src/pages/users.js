@@ -110,15 +110,18 @@ const Users = () => {
     //     }
     // }, [data])
 
+//   if (members && members.errors)
+//        return (<div> <h1>ERROR</h1> </div>)
     return (
         <div className="page">
+            {members.errors?members.errors:(
             <>
                 <div className='authWrapper timetable'>
                     <div className='timeTable-wrapper'>
                         {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
                     </div>
                 </div>
-            </>
+            </>)}
         </div>)
 }
 
