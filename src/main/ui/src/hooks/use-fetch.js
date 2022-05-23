@@ -47,11 +47,10 @@ const useFetch = (url, options) => {
         // }
 
         const res =  await fetch(url, options)
-        if (!res.ok) {
-
-          console.log("nem jött össze.")
-          throw new Error("HIBA!");
-        }
+//        if (!res.ok) {
+//          console.log("nem jött össze.")
+//          throw new Error("HIBA!");
+//        }
         const json = await res.json();
         setResponse(json);
       } catch (e) {

@@ -3,6 +3,7 @@ package hu.nye.webapp.users.controller;
 import hu.nye.webapp.users.dto.UserDTO;
 import hu.nye.webapp.users.service.UserService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,5 +61,13 @@ public class UserController {
     @RequestMapping(path = "/users/findById" , method = RequestMethod.POST)
     public Optional<UserDTO> findById(@RequestBody Long id){ return userService.findById(id);}
 
+    // Laci
+    // ID alapján módosít
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(path = "/users" , method = RequestMethod.PUT)
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO){
+        UserDTO updatedUser = userService.update(userDTO);
+        return ResponseEntity.ok(updatedUser);
+    }
 
 }

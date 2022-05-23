@@ -82,4 +82,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public UserDTO update(UserDTO userDTO) {
+        Long id=userDTO.getId();
+        Optional <User> optionalUser= userRepository.findById(id);
+        if (optionalUser.isEmpty()){
+            throw new UserNotFoundException("A felhasználó nem található ezzel az azonosítóval: "+id);
+        }
+        User userToUpdate = modelMapper.map(userDTO, User.class);
+        User savedUser=userRepository.save(userToUpdate);
+        return modelMapper.map(savedUser,UserDTO.class);
+    }
+
 }
