@@ -19,7 +19,8 @@ import useFetchCustom from "../hooks/use-fetch";
 import _ from 'lodash';
 import { useHistory } from "react-router-dom";
 import ErrorMessage from "../components/errorTemplate/template";
-
+import Form
+    from "../components/form";
 const override = css`
   display: block;
   margin: 0 auto;
@@ -31,7 +32,11 @@ const ModifyUsers = () => {
 
     const [table, setTable] = useState(null)
     const [id2, SetId] = useState(1);
-    const [rowId, setRowId] = useState("")
+    const [firstName, SetFirstName] = useState(null);
+    const [lastName, SetLastName] = useState(null);
+    const [telNumber, SetTelNumber] = useState(null);
+    const [address, SetAddress] = useState(null);
+    const [rowId, setRowId] = useState(null)
 
     const [data, setData] = useState(null)
     const [errorMessageTemplate, setErrorMessageTemplate] = useState(null)
@@ -40,15 +45,19 @@ const ModifyUsers = () => {
 
 
     let history = useHistory();
-    
+
+
     const { doRequest, errors } = useRequest({
         url: `http://localhost:8080/users/${rowId}`,
-        method: 'delete',
-        // body:
-        // {
-        //     id2
-        // },
-         onSuccess: () => window.location.reload()
+        method: "delete",
+        // body: reguestMethod === "delete" ? (null) : ({
+        //     id2,
+        //     firstName,
+        //     lastName,
+        //     telNumber,
+        //     address
+        // }),
+        onSuccess: () => window.location.reload()
     });
 
     const handChangeRowID = (row, e) => {
@@ -61,13 +70,26 @@ const ModifyUsers = () => {
 
     const handleDelete = (e) => {
 
-        console.log("id: ",id2)
-        console.log("RowId: ",rowId)
+        console.log("id: ", id2)
+        console.log("RowId: ", rowId)
         try {
             doRequest()
         } catch (error) {
             console.log(error)
         }
+    }
+
+
+    const handleEdit = (e, row) => {
+
+        console.log("id: ", e)
+        console.log("RowId: ", row)
+
+        SetFirstName(e.firstName)
+        SetLastName(e.secondName)
+        SetTelNumber(e.telNumber)
+        SetAddress(e.address)
+        SetId(e.id)
     }
 
     useEffect(() => {
@@ -108,7 +130,7 @@ const ModifyUsers = () => {
 
 
     useEffect(() => {
-        if (rowId !== "") {
+        if (rowId !== null) {
             handleDelete()
         }
     }, [rowId])
@@ -120,17 +142,20 @@ const ModifyUsers = () => {
     // }, [data])
 
     return (
-     <div className="page">
-             {members.error ? (<ErrorMessage message={members.error}/>) :
-                 (
-                     <>
-                         <div className='authWrapper modify'>
-                             <div className='timeTable-wrapper'>
-                                 {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID)} />}
-                             </div>
-                         </div>
-                     </>)}
-         </div>
-        )
+        <div className="page">
+            {members.error ? (<ErrorMessage message={members.error} />) :
+                (
+                    <>
+                        <div className='authWrapper modify'>
+                            <div className='timeTable-wrapper'>
+                                {data && <Table data={data} columns={timeTableColumnsGenerator(handChangeRowID, handleEdit)} />}
+                            </div>
+                            <div className='form-wrapper'>
+                                {data && <Form first={firstName} second={lastName} targetAddress={address} phoneNumber={telNumber} id={id2}/>}
+                            </div>
+                        </div>
+                    </>)}
+        </div>
+    )
 }
 export default ModifyUsers;
