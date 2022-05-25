@@ -57,7 +57,11 @@ const ModifyUsers = () => {
         //     telNumber,
         //     address
         // }),
-        onSuccess: () => window.location.reload()
+        onSuccess: () => {
+            alert("Sikeres törlés.");
+            history.push("/");
+             //window.location.reload()
+        }
     });
 
     const handChangeRowID = (row, e) => {
@@ -80,20 +84,21 @@ const ModifyUsers = () => {
     }
 
 
-    const handleEdit = (e, row) => {
+    const handleEdit = (row, e) => {
 
-        console.log("id: ", e)
-        console.log("RowId: ", row)
+        console.log("modifyUser.js: handleEdit id: ", row)
+ //       console.log("RowId: ", e)
 
-        SetFirstName(e.firstName)
-        SetLastName(e.secondName)
-        SetTelNumber(e.telNumber)
-        SetAddress(e.address)
-        SetId(e.id)
+        SetFirstName(row.firstName)
+        SetLastName(row.secondName)
+        SetTelNumber(row.telNumber)
+        SetAddress(row.address)
+        SetId(row.id)
     }
 
     useEffect(() => {
         setData(members.response)
+        console.log("modifyUser.js: useEffect")
         // FAKE DATA
         // const users = [
         //     {

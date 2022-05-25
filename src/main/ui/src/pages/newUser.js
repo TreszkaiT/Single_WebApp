@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 import InputField from '../components/inputField';
 import Button from '../components/button';
 
 export default () => {
-    const [firstName, seFirsttName] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [secondName, setLastName] = useState('');
     const [telNumber, setPhone] = useState('');
     const [address, setAddress] = useState('');
 
-
+    let history = useHistory();
     const { doRequest, errors } = useRequest({
         url: 'http://localhost:8080/users',
         method: 'post',
@@ -19,7 +20,11 @@ export default () => {
             telNumber,
             address
         },
-     onSuccess: () => {window.location.reload();alert("Sikeres Regisztráció!");}
+     onSuccess: () => {
+         //window.location.reload();
+         alert("Sikeres rögzítés !");
+         history.push("/");
+        }
     });
 
     const onSubmit = async event => {
@@ -36,10 +41,10 @@ export default () => {
                         <form onSubmit={onSubmit}>
                             <h3 className='form-title'>Új vizsgázó</h3>
                             <div className="form-group">
-                                <InputField label="Vezeték név: " value={secondName} onChange={e => setLastName(e.target.value)} classes="form-control" />
+                                <InputField label="Vezeték név: " value={firstName} onChange={e => setFirstName(e.target.value)} classes="form-control" />
                             </div>
                             <div className="form-group">
-                                <InputField label="Kereszt név: " value={firstName} onChange={e => seFirsttName(e.target.value)} classes="form-control" />
+                                <InputField label="Kereszt név: " value={secondName} onChange={e => setLastName(e.target.value)} classes="form-control" />
                             </div>
                             <div className="form-group">
                                 <InputField label="Cím" value={address} onChange={e => setAddress(e.target.value)} classes="form-control" />

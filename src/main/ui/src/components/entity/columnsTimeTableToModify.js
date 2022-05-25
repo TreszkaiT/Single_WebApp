@@ -1,12 +1,12 @@
 export function timeTableColumnsGenerator(handleDelete,handleEdit) {
     const columns = [
       {
-        name: 'Vezeték név',
+        name: 'Vezetéknév',
         selector: row => row.firstName,
         sortable: true
       },
       {
-        name: 'Kereszt név',
+        name: 'Keresztnév',
         selector: row => row.secondName,
       },
       {

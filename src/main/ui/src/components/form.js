@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import useRequest from "../hooks/use-request";
+import { useHistory } from "react-router-dom";
 
 const EditForm = ({ first, second, phoneNumber, targetAddress, id }) => {
 
@@ -8,9 +9,10 @@ const EditForm = ({ first, second, phoneNumber, targetAddress, id }) => {
     const [secondName, SetSecondName] = useState("");
     const [telNumber, SetTelNumber] = useState("");
     const [address, SetAddress] = useState("");
+    let history = useHistory();
 
     const { doRequest, errors } = useRequest({
-        url: `http://localhost:8080/users/modify`,
+        url: `http://localhost:8080/users`,
         method: "put",
         body: {
             id,
@@ -19,7 +21,11 @@ const EditForm = ({ first, second, phoneNumber, targetAddress, id }) => {
             telNumber,
             address
         },
-        onSuccess: () => window.location.reload()
+        onSuccess: () => {
+            alert("Sikeres módosítás !");
+            history.push("/")
+        // window.location.reload()
+        }
     });
 
     const handleOnSubmit = (e) => {
@@ -33,32 +39,32 @@ const EditForm = ({ first, second, phoneNumber, targetAddress, id }) => {
 
     useEffect(() => {
 
-        !first ? SetFirstName(" ") : SetFirstName(first);
-        !second ? SetSecondName(" ") : SetSecondName(second);
+        !first ? SetFirstName("") : SetFirstName(first);
+        !second ? SetSecondName("") : SetSecondName(second);
         !phoneNumber ? SetTelNumber("") : SetTelNumber(phoneNumber);
-        !targetAddress ? SetAddress(" ") : SetAddress(targetAddress);
+        !targetAddress ? SetAddress("") : SetAddress(targetAddress);
     }, [first, second, phoneNumber, targetAddress])
 
 
     return (
         <Form onSubmit={handleOnSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>First Name</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicText">
+                <Form.Label>Vezetéknév</Form.Label>
                 <Form.Control value={firstName} onChange={e => SetFirstName(e.target.value)} type="text" placeholder="Your First Name" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail2">
-                <Form.Label>Last Name</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicText">
+                <Form.Label>Keresztnév</Form.Label>
                 <Form.Control value={secondName} onChange={e => SetSecondName(e.target.value)} type="text" placeholder="Your Last Name" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail3">
-                <Form.Label>Phone</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicText">
+                <Form.Label>Telefon</Form.Label>
                 <Form.Control value={telNumber} onChange={e => SetTelNumber(e.target.value)} type="text" placeholder="Your phone number" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail4">
-                <Form.Label>Address</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicText">
+                <Form.Label>Cím</Form.Label>
                 <Form.Control value={address} onChange={e => SetAddress(e.target.value)} type="text" placeholder="Your address" />
             </Form.Group>
-
+            {errors}
             <Button variant="primary" type="submit">
                 Submit
             </Button>
